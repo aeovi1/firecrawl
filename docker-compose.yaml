@@ -70,10 +70,11 @@ services:
       - redis
       - playwright-service
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:3002/v0/scrape || exit 1"]
+      test: ["CMD", "curl", "-fs", "http://localhost:3002/v0/scrape"]
       interval: 30s
       timeout: 10s
-      retries: 3
+      retries: 5
+      start_period: 60s
     command: [ "pnpm", "run", "start:production" ]
 
   worker:
