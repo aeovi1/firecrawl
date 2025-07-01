@@ -69,12 +69,6 @@ services:
     depends_on:
       - redis
       - playwright-service
-    healthcheck:
-      test: ["CMD", "curl", "-fs", "http://localhost:3002/v0/scrape"]
-      interval: 30s
-      timeout: 10s
-      retries: 5
-      start_period: 60s
     command: [ "pnpm", "run", "start:production" ]
 
   worker:
